@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Trash2, ShoppingCart, ArrowRight, Tag } from "lucide-react";
+import Image from "next/image";
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState([
@@ -100,10 +101,13 @@ export default function CartPage() {
                           <CardContent className="p-6">
                             <div className="flex flex-col md:flex-row gap-6">
                               <div className="flex-shrink-0">
-                                <img
+                                <Image
                                   src={item.image}
                                   alt={item.title}
                                   className="w-full md:w-48 h-32 object-cover rounded-lg"
+                                  layout="responsive"
+                                  width={192}
+                                  height={128}
                                 />
                               </div>
 

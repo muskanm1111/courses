@@ -55,7 +55,7 @@ export default function StatsSection() {
     });
 
     return () => intervals.forEach(clearInterval);
-  }, []);
+  }, [finalValues]);
 
   const stats = [
     {

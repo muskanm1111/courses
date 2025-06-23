@@ -20,6 +20,7 @@ import {
   Globe,
   Calendar,
 } from "lucide-react";
+import Image from "next/image";
 
 const courseData = {
   "complete-react-development-course": {
@@ -131,7 +132,7 @@ export default function CoursePage({ params }) {
               Course Not Found
             </h1>
             <p className="text-gray-600 mb-8">
-              The course you're looking for doesn't exist.
+              The course you&apos;re looking for doesn&apos;t exist.
             </p>
             <Link href="/courses">
               <Button className="gradient-bg text-white">
@@ -201,10 +202,13 @@ export default function CoursePage({ params }) {
 
                   {/* Instructor */}
                   <div className="flex items-center space-x-4 mb-8">
-                    <img
+                    <Image
                       src={course.instructor.avatar}
                       alt={course.instructor.name}
                       className="w-12 h-12 rounded-full"
+                      layout="responsive"
+                      width={48}
+                      height={48}
                     />
                     <div>
                       <div className="font-medium text-gray-900">
@@ -228,10 +232,13 @@ export default function CoursePage({ params }) {
                 >
                   <Card className="overflow-hidden shadow-2xl border-0">
                     <div className="relative">
-                      <img
+                      <Image
                         src={course.image}
                         alt={course.title}
                         className="w-full h-48 object-cover"
+                        layout="responsive"
+                        width={600}
+                        height={400}
                       />
                       <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                         <Button
@@ -363,7 +370,7 @@ export default function CoursePage({ params }) {
 
                       <div>
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                          What you'll learn
+                          What you&apos;ll learn
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                           {course.whatYouLearn.map((item, index) => (

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Play, Star, Users, BookOpen, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export default function HeroSection() {
   const [currentStat, setCurrentStat] = useState(0);
@@ -25,7 +26,7 @@ export default function HeroSection() {
       setCurrentStat((prev) => (prev + 1) % stats.length);
     }, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, [stats.length]);
 
   // Example featured course (replace with real data as needed)
   const featuredCourse = {
@@ -39,10 +40,11 @@ export default function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-950">
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1500&q=80"
           alt="Banner Background"
           className="w-full h-full object-cover object-center opacity-60"
+          layout="fill"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/80 via-gray-900/70 to-gray-950/90" />
       </div>

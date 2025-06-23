@@ -45,8 +45,8 @@ export default function ContactPage() {
                 Get in <span className="text-gradient">Touch</span>
               </h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Have questions? We'd love to hear from you. Send us a message
-                and we'll respond as soon as possible.
+                Have questions? We&apos;d love to hear from you. Send us a message
+                and we&apos;ll respond as soon as possible.
               </p>
             </motion.div>
 
@@ -73,7 +73,7 @@ export default function ContactPage() {
                         </div>
                       </div>
                       <p className="text-sm text-gray-500">
-                        Send us an email anytime and we'll get back to you
+                        Send us an email anytime and we&apos;ll get back to you
                         within 24 hours.
                       </p>
                     </CardContent>

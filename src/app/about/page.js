@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Users, Target, Award, Heart, BookOpen, Globe } from "lucide-react";
+import Image from "next/image";
 
 const stats = [
   {
@@ -103,7 +104,7 @@ export default function AboutPage() {
                 About <span className="text-gradient">EduFlow</span>
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                We're on a mission to democratize education and make
+                We&apos;re on a mission to democratize education and make
                 high-quality learning accessible to everyone, everywhere. Join
                 millions of learners who are transforming their careers with
                 EduFlow.
@@ -159,7 +160,7 @@ export default function AboutPage() {
                   <p>
                     What began as a small platform with just 10 courses has
                     grown into a global learning ecosystem serving over 500,000
-                    students worldwide. We've partnered with industry experts,
+                    students worldwide. We&apos;ve partnered with industry experts,
                     leading universities, and innovative companies to create
                     courses that are both practical and transformative.
                   </p>
@@ -179,10 +180,13 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <img
+                <Image
                   src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=600"
                   alt="Team collaboration"
                   className="rounded-2xl shadow-2xl"
+                  layout="responsive"
+                  width={600}
+                  height={400}
                 />
                 <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">
                   <div className="text-2xl font-bold text-purple-600">2020</div>
@@ -271,10 +275,13 @@ export default function AboutPage() {
                 >
                   <Card className="text-center overflow-hidden hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-sm border-0">
                     <CardContent className="p-6">
-                      <img
+                      <Image
                         src={member.image}
                         alt={member.name}
                         className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+                        layout="responsive"
+                        width={96}
+                        height={96}
                       />
                       <h3 className="text-xl font-bold text-gray-900 mb-2">
                         {member.name}

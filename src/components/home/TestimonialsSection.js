@@ -89,7 +89,7 @@ export default function TestimonialsSection() {
 
                   {/* Testimonial Content */}
                   <blockquote className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed italic">
-                    "{mockTestimonials[currentIndex].content}"
+                    &quot;{mockTestimonials[currentIndex].content}&quot;
                   </blockquote>
 
                   {/* Author Info */}
