@@ -126,16 +126,16 @@ export default function CoursePage({ params }) {
   if (!course) {
     return (
       <>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <div className="min-h-screen flex items-center justify-center px-4">
+          <div className="text-center max-w-md mx-auto">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               Course Not Found
             </h1>
-            <p className="text-gray-600 mb-8">
+            <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">
               The course you&apos;re looking for doesn&apos;t exist.
             </p>
             <Link href="/courses">
-              <Button className="gradient-bg text-white">
+              <Button className="gradient-bg text-white w-full sm:w-auto px-6 py-2">
                 Browse All Courses
               </Button>
             </Link>
@@ -149,72 +149,94 @@ export default function CoursePage({ params }) {
     <>
       <main className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
         {/* Hero Section */}
-        <section className="pt-20 pb-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <section className="pt-20 sm:pt-20 pb-8 sm:pb-12">
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
               {/* Course Info */}
-              <div className="lg:col-span-2">
+              <div className="lg:col-span-2 order-2 lg:order-1">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <div className="flex items-center space-x-2 mb-4">
+                  {/* Badges */}
+                  <div className="flex flex-wrap items-center gap-2 mb-3 sm:mb-4">
                     <Badge
                       variant="outline"
-                      className="text-purple-600 border-purple-200"
+                      className="text-xs sm:text-sm text-purple-600 border-purple-200 px-2 py-1"
                     >
                       {course.category}
                     </Badge>
-                    <Badge variant="secondary">{course.level}</Badge>
+                    <Badge
+                      variant="secondary"
+                      className="text-xs sm:text-sm px-2 py-1"
+                    >
+                      {course.level}
+                    </Badge>
                   </div>
 
-                  <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                  {/* Title */}
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                     {course.title}
                   </h1>
 
-                  <p className="text-xl text-gray-600 mb-6">
+                  {/* Description */}
+                  <p className="text-base sm:text-lg lg:text-xl text-gray-600 mb-4 sm:mb-6 leading-relaxed">
                     {course.description}
                   </p>
 
                   {/* Course Stats */}
-                  <div className="flex flex-wrap items-center gap-6 mb-6">
+                  <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-3 sm:gap-4 lg:gap-6 mb-4 sm:mb-6">
                     <div className="flex items-center space-x-1">
-                      <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                      <span className="font-medium">{course.rating}</span>
-                      <span className="text-gray-500">
+                      <Star className="h-4 w-4 sm:h-5 sm:w-5 fill-yellow-400 text-yellow-400" />
+                      <span className="font-medium text-sm sm:text-base">
+                        {course.rating}
+                      </span>
+                      <span className="text-gray-500 text-xs sm:text-sm hidden sm:inline">
                         ({course.students.toLocaleString()} students)
                       </span>
                     </div>
                     <div className="flex items-center space-x-1">
-                      <Clock className="h-5 w-5 text-gray-500" />
-                      <span>{course.duration}</span>
+                      <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500" />
+                      <span className="text-sm sm:text-base">
+                        {course.duration}
+                      </span>
                     </div>
                     <div className="flex items-center space-x-1">
-                      <BookOpen className="h-5 w-5 text-gray-500" />
-                      <span>{course.lessons} lessons</span>
+                      <BookOpen className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500" />
+                      <span className="text-sm sm:text-base">
+                        {course.lessons} lessons
+                      </span>
                     </div>
                     <div className="flex items-center space-x-1">
-                      <Globe className="h-5 w-5 text-gray-500" />
-                      <span>{course.language}</span>
+                      <Globe className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500" />
+                      <span className="text-sm sm:text-base">
+                        {course.language}
+                      </span>
                     </div>
                   </div>
 
+                  {/* Mobile Student Count */}
+                  <div className="sm:hidden text-xs text-gray-500 mb-4">
+                    {course.students.toLocaleString()} students enrolled
+                  </div>
+
                   {/* Instructor */}
-                  <div className="flex items-center space-x-4 mb-8">
-                    <Image
-                      src={course.instructor.avatar}
-                      alt={course.instructor.name}
-                      className="w-12 h-12 rounded-full"
-                      layout="responsive"
-                      width={48}
-                      height={48}
-                    />
-                    <div>
-                      <div className="font-medium text-gray-900">
+                  <div className="flex items-center space-x-3 sm:space-x-4 mb-6 sm:mb-8">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden flex-shrink-0">
+                      <Image
+                        src={course.instructor.avatar}
+                        alt={course.instructor.name}
+                        className="w-full h-full object-cover"
+                        width={48}
+                        height={48}
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="font-medium text-gray-900 text-sm sm:text-base">
                         Created by {course.instructor.name}
                       </div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-xs sm:text-sm text-gray-500 line-clamp-2">
                         {course.instructor.bio}
                       </div>
                     </div>
@@ -223,46 +245,49 @@ export default function CoursePage({ params }) {
               </div>
 
               {/* Course Card */}
-              <div className="lg:col-span-1">
+              <div className="lg:col-span-1 order-1 lg:order-2">
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="sticky top-24"
+                  className="lg:sticky lg:top-24"
                 >
-                  <Card className="overflow-hidden shadow-2xl border-0">
+                  <Card className="overflow-hidden shadow-xl lg:shadow-2xl border-0">
+                    {/* Course Image */}
                     <div className="relative">
-                      <Image
-                        src={course.image}
-                        alt={course.title}
-                        className="w-full h-48 object-cover"
-                        layout="responsive"
-                        width={600}
-                        height={400}
-                      />
+                      <div className="aspect-video w-full overflow-hidden">
+                        <Image
+                          src={course.image}
+                          alt={course.title}
+                          className="w-full h-full object-cover"
+                          width={600}
+                          height={400}
+                        />
+                      </div>
                       <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                         <Button
-                          size="lg"
+                          size="sm"
                           variant="secondary"
-                          className="bg-white/90 text-gray-900 hover:bg-white"
+                          className="bg-white/90 text-gray-900 hover:bg-white text-xs sm:text-sm px-3 sm:px-4 py-2"
                         >
-                          <Play className="mr-2 h-5 w-5" />
-                          Preview Course
+                          <Play className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                          Preview
                         </Button>
                       </div>
                     </div>
 
-                    <CardContent className="p-6">
-                      <div className="flex items-center justify-between mb-6">
-                        <div>
-                          <span className="text-3xl font-bold text-purple-600">
+                    <CardContent className="p-4 sm:p-6">
+                      {/* Pricing */}
+                      <div className="flex items-center justify-between mb-4 sm:mb-6">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-2xl sm:text-3xl font-bold text-purple-600">
                             ${course.price}
                           </span>
-                          <span className="text-lg text-gray-400 line-through ml-2">
+                          <span className="text-base sm:text-lg text-gray-400 line-through">
                             ${course.originalPrice}
                           </span>
                         </div>
-                        <Badge className="gradient-bg text-white">
+                        <Badge className="gradient-bg text-white text-xs sm:text-sm px-2 py-1">
                           {Math.round(
                             ((course.originalPrice - course.price) /
                               course.originalPrice) *
@@ -272,48 +297,63 @@ export default function CoursePage({ params }) {
                         </Badge>
                       </div>
 
-                      <Button className="w-full gradient-bg text-white mb-4 py-3 text-lg">
+                      {/* Enroll Button */}
+                      <Button className="w-full gradient-bg text-white mb-3 sm:mb-4 py-2.5 sm:py-3 text-sm sm:text-base font-semibold">
                         Enroll Now
                       </Button>
 
-                      <div className="text-center text-sm text-gray-500 mb-6">
+                      {/* Guarantee */}
+                      <div className="text-center text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">
                         30-Day Money-Back Guarantee
                       </div>
 
                       {/* Course Features */}
-                      <div className="space-y-3">
-                        <div className="flex items-center space-x-3">
-                          <CheckCircle className="h-5 w-5 text-green-500" />
-                          <span className="text-sm">Lifetime access</span>
+                      <div className="space-y-2.5 sm:space-y-3 mb-4 sm:mb-6">
+                        <div className="flex items-center space-x-2 sm:space-x-3">
+                          <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm">
+                            Lifetime access
+                          </span>
                         </div>
-                        <div className="flex items-center space-x-3">
-                          <Award className="h-5 w-5 text-green-500" />
-                          <span className="text-sm">
+                        <div className="flex items-center space-x-2 sm:space-x-3">
+                          <Award className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm">
                             Certificate of completion
                           </span>
                         </div>
-                        <div className="flex items-center space-x-3">
-                          <Download className="h-5 w-5 text-green-500" />
-                          <span className="text-sm">
+                        <div className="flex items-center space-x-2 sm:space-x-3">
+                          <Download className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm">
                             Downloadable resources
                           </span>
                         </div>
-                        <div className="flex items-center space-x-3">
-                          <Users className="h-5 w-5 text-green-500" />
-                          <span className="text-sm">
+                        <div className="flex items-center space-x-2 sm:space-x-3">
+                          <Users className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm">
                             Access on mobile and TV
                           </span>
                         </div>
                       </div>
 
-                      <div className="flex space-x-2 mt-6">
-                        <Button variant="outline" size="sm" className="flex-1">
-                          <Heart className="h-4 w-4 mr-1" />
-                          Save
+                      {/* Action Buttons */}
+                      <div className="flex space-x-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 text-xs sm:text-sm py-2"
+                        >
+                          <Heart className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                          <span className="hidden sm:inline">Save</span>
+                          <span className="sm:hidden">♡</span>
                         </Button>
-                        <Button variant="outline" size="sm" className="flex-1">
-                          <Share2 className="h-4 w-4 mr-1" />
-                          Share
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 text-xs sm:text-sm py-2"
+                        >
+                          <Share2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                          <span className="hidden sm:inline">Share</span>
+                          <span className="sm:hidden">⤴</span>
                         </Button>
                       </div>
                     </CardContent>
@@ -325,78 +365,87 @@ export default function CoursePage({ params }) {
         </section>
 
         {/* Course Content Tabs */}
-        <section className="pb-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="pb-12 sm:pb-16 lg:pb-20">
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              {/* Tab Navigation */}
-              <div className="flex border-b border-gray-200 mb-8">
-                {[
-                  { id: "overview", label: "Overview" },
-                  { id: "curriculum", label: "Curriculum" },
-                  { id: "instructor", label: "Instructor" },
-                  { id: "reviews", label: "Reviews" },
-                ].map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`px-6 py-3 font-medium transition-colors duration-200 ${
-                      activeTab === tab.id
-                        ? "text-purple-600 border-b-2 border-purple-600"
-                        : "text-gray-500 hover:text-gray-700"
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
+              {/* Tab Navigation - Responsive */}
+              <div className="flex border-b border-gray-200 mb-6 sm:mb-8 overflow-x-auto scrollbar-hide">
+                <div className="flex space-x-0 ">
+                  {[
+                    { id: "overview", label: "Overview" },
+                    { id: "curriculum", label: "Curriculum" },
+                    { id: "instructor", label: "Instructor" },
+                    { id: "reviews", label: "Reviews" },
+                  ].map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`px-3 sm:px-4 lg:px-6 py-2 sm:py-3 font-medium transition-colors duration-200 text-sm sm:text-base whitespace-nowrap ${
+                        activeTab === tab.id
+                          ? "text-purple-600 border-b-2 border-purple-600"
+                          : "text-gray-500 hover:text-gray-700"
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               {/* Tab Content */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12">
                 <div className="lg:col-span-2">
                   {activeTab === "overview" && (
-                    <div className="space-y-8">
+                    <div className="space-y-6 sm:space-y-8">
+                      {/* About Course */}
                       <div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
                           About this course
                         </h3>
-                        <p className="text-gray-600 leading-relaxed">
+                        <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                           {course.longDescription}
                         </p>
                       </div>
 
+                      {/* What You'll Learn */}
                       <div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
                           What you&apos;ll learn
                         </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 gap-2.5 sm:gap-3">
                           {course.whatYouLearn.map((item, index) => (
                             <div
                               key={index}
-                              className="flex items-start space-x-3"
+                              className="flex items-start space-x-2 sm:space-x-3"
                             >
-                              <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700">{item}</span>
+                              <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                              <span className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                                {item}
+                              </span>
                             </div>
                           ))}
                         </div>
                       </div>
 
+                      {/* Requirements */}
                       <div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
                           Requirements
                         </h3>
                         <ul className="space-y-2">
                           {course.requirements.map((req, index) => (
                             <li
                               key={index}
-                              className="flex items-start space-x-3"
+                              className="flex items-start space-x-2 sm:space-x-3"
                             >
-                              <div className="w-2 h-2 bg-purple-600 rounded-full mt-2 flex-shrink-0"></div>
-                              <span className="text-gray-700">{req}</span>
+                              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-600 rounded-full mt-2 flex-shrink-0"></div>
+                              <span className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                                {req}
+                              </span>
                             </li>
                           ))}
                         </ul>
@@ -405,29 +454,36 @@ export default function CoursePage({ params }) {
                   )}
 
                   {activeTab === "curriculum" && (
-                    <div className="space-y-6">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                    <div className="space-y-4 sm:space-y-6">
+                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
                         Course Curriculum
                       </h3>
                       {course.curriculum.map((section, index) => (
-                        <Card key={index} className="border border-gray-200">
-                          <CardHeader>
-                            <CardTitle className="flex items-center justify-between">
-                              <span>{section.title}</span>
-                              <span className="text-sm text-gray-500">
+                        <Card
+                          key={index}
+                          className="border border-gray-200 shadow-sm"
+                        >
+                          <CardHeader className="pb-3 sm:pb-4">
+                            <CardTitle className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                              <span className="text-base sm:text-lg text-gray-900">
+                                {section.title}
+                              </span>
+                              <span className="text-xs sm:text-sm text-gray-500 font-normal">
                                 {section.lessons} lessons • {section.duration}
                               </span>
                             </CardTitle>
                           </CardHeader>
-                          <CardContent>
+                          <CardContent className="pt-0">
                             <ul className="space-y-2">
                               {section.topics.map((topic, topicIndex) => (
                                 <li
                                   key={topicIndex}
-                                  className="flex items-center space-x-3"
+                                  className="flex items-center space-x-2 sm:space-x-3"
                                 >
-                                  <Play className="h-4 w-4 text-purple-600" />
-                                  <span className="text-gray-700">{topic}</span>
+                                  <Play className="h-3 w-3 sm:h-4 sm:w-4 text-purple-600 flex-shrink-0" />
+                                  <span className="text-sm sm:text-base text-gray-700">
+                                    {topic}
+                                  </span>
                                 </li>
                               ))}
                             </ul>
@@ -440,32 +496,32 @@ export default function CoursePage({ params }) {
 
                 {/* Sidebar */}
                 <div className="lg:col-span-1">
-                  <Card className="p-6">
-                    <h4 className="font-bold text-gray-900 mb-4">
+                  <Card className="p-4 sm:p-6 shadow-sm">
+                    <h4 className="font-bold text-gray-900 mb-3 sm:mb-4 text-base sm:text-lg">
                       Course includes:
                     </h4>
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-3">
-                        <Clock className="h-5 w-5 text-gray-500" />
-                        <span className="text-sm">
+                    <div className="space-y-2.5 sm:space-y-3">
+                      <div className="flex items-center space-x-2 sm:space-x-3">
+                        <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500 flex-shrink-0" />
+                        <span className="text-xs sm:text-sm">
                           {course.duration} on-demand video
                         </span>
                       </div>
-                      <div className="flex items-center space-x-3">
-                        <BookOpen className="h-5 w-5 text-gray-500" />
-                        <span className="text-sm">
+                      <div className="flex items-center space-x-2 sm:space-x-3">
+                        <BookOpen className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500 flex-shrink-0" />
+                        <span className="text-xs sm:text-sm">
                           {course.projects} coding exercises
                         </span>
                       </div>
-                      <div className="flex items-center space-x-3">
-                        <Award className="h-5 w-5 text-gray-500" />
-                        <span className="text-sm">
+                      <div className="flex items-center space-x-2 sm:space-x-3">
+                        <Award className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500 flex-shrink-0" />
+                        <span className="text-xs sm:text-sm">
                           Certificate of completion
                         </span>
                       </div>
-                      <div className="flex items-center space-x-3">
-                        <Calendar className="h-5 w-5 text-gray-500" />
-                        <span className="text-sm">
+                      <div className="flex items-center space-x-2 sm:space-x-3">
+                        <Calendar className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500 flex-shrink-0" />
+                        <span className="text-xs sm:text-sm">
                           Last updated {course.lastUpdated}
                         </span>
                       </div>

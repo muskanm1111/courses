@@ -31,7 +31,7 @@ export default function HeroSection() {
   // Example featured course (replace with real data as needed)
   const featuredCourse = {
     title: "Modern Web Development",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
+    image: "",
     description: "Build responsive websites with React, Next.js, and Tailwind CSS.",
     link: "/course/modern-web-development",
   };
@@ -41,7 +41,7 @@ export default function HeroSection() {
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1500&q=80"
+          src=""
           alt="Banner Background"
           className="w-full h-full object-cover object-center opacity-60"
           layout="fill"
@@ -84,7 +84,7 @@ export default function HeroSection() {
         <div className="max-w-5xl mx-auto text-center py-20">
           {/* Main Heading */}
           <motion.h1
-            className="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight drop-shadow-lg"
+            className="text-4xl md:text-6xl font-extrabold text-white lg:mb-6 leading-tight drop-shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
